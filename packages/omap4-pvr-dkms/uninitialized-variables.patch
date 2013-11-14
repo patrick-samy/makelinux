@@ -1,0 +1,11 @@
+--- ./sgx/services4/srvkm/devices/sgx/mmu.c	2013-11-14 18:03:09.699183127 +0100
++++ ./sgx/services4/srvkm/devices/sgx/mmu.c	2013-11-14 18:03:48.267815793 +0100
+@@ -1424,7 +1424,7 @@
+ 		if(ppsPTInfoList[i]->hPTPageOSMemHandle == IMG_NULL
+ 		&& ppsPTInfoList[i]->PTPageCpuVAddr == IMG_NULL)
+ 		{
+-			IMG_DEV_PHYADDR	sDevPAddr;
++			IMG_DEV_PHYADDR	sDevPAddr = { 0 };
+ #if defined(SUPPORT_SGX_MMU_DUMMY_PAGE)
+ 			IMG_UINT32 *pui32Tmp;
+ 			IMG_UINT32 j;

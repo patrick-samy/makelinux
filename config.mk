@@ -2,12 +2,13 @@
 TARGET          := arm-hackboard-linux-gnueabihf
 ARCH            := arm
 ARCH_VARIANT    := v7-a
-FLOAT_TYPE      := hard 
+FLOAT_TYPE      := hard
 FPU_TYPE        := vfp
 
 # Linux configuration
 LINUX_DEFCONFIG := omap4plus_defconfig
 LINUX_LOADADDR  := 80300000
+LINUX_VERSION   := 4_3.4.0-TI
 
 # Main directories
 SOURCES_PATH    := $(ROOT_DIR)/sources
