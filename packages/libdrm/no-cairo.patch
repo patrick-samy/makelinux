@@ -1,0 +1,49 @@
+--- ./configure.ac	2013-11-15 14:54:30.306411290 +0100
++++ ./configure.ac	2013-11-15 14:55:00.969578507 +0100
+@@ -63,6 +63,11 @@
+ 	      [Disable KMS mm abstraction library (default: auto)]),
+ 	      [LIBKMS=$enableval], [LIBKMS=auto])
+ 
++AC_ARG_ENABLE(cairo,
++	      AS_HELP_STRING([--disable-cairo],
++	      [Disable cairo (default: auto)]),
++	      [ENABLECAIRO=$enableval], [ENABLECAIRO=auto])
++
+ AC_ARG_ENABLE(intel,
+ 	      AS_HELP_STRING([--disable-intel],
+ 	      [Enable support for intel's KMS API (default: auto)]),
+@@ -201,9 +206,12 @@
+ 	AC_DEFINE(HAVE_EXYNOS, 1, [Have EXYNOS support])
+ fi
+ 
+-PKG_CHECK_MODULES(CAIRO, cairo, [HAVE_CAIRO=yes], [HAVE_CAIRO=no])
+-if test "x$HAVE_CAIRO" = xyes; then
+-	AC_DEFINE(HAVE_CAIRO, 1, [Have cairo support])
++HAVE_CAIRO=no
++if test "x$ENABLECAIRO" = xyes; then
++	PKG_CHECK_MODULES(CAIRO, cairo, [HAVE_CAIRO=yes], [HAVE_CAIRO=no])
++        if test "x$HAVE_CAIRO" = xyes; then
++		AC_DEFINE(HAVE_CAIRO, 1, [Have cairo support])
++        fi
+ fi
+ AM_CONDITIONAL(HAVE_CAIRO, [test "x$HAVE_CAIRO" = xyes])
+ 
+@@ -327,7 +335,6 @@
+ 	exynos/libdrm_exynos.pc
+ 	tests/Makefile
+ 	tests/modeprint/Makefile
+-	tests/modetest/Makefile
+ 	tests/kmstest/Makefile
+ 	tests/radeon/Makefile
+ 	tests/vbltest/Makefile
+--- ./tests/Makefile.am	2013-11-15 14:32:34.270207537 +0100
++++ ./tests/Makefile.am	2013-11-15 14:51:57.410572931 +0100
+@@ -13,7 +13,7 @@
+ SUBDIRS = modeprint
+ 
+ if HAVE_LIBKMS
+-SUBDIRS += kmstest modetest
++SUBDIRS += kmstest
+ endif
+ 
+ if HAVE_RADEON

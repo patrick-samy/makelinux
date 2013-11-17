@@ -1,5 +1,5 @@
 # Source directory
-OMAP4_PVR_LIBRARIES_SOURCE_PATH := $(SOURCES_PATH)/pvr-omap4/
+OMAP4_PVR_LIBRARIES_SOURCE_PATH := $(SOURCES_PATH)/pvr-omap4
 
 # Target
 OMAP4_PVR_LIBRARIES_TARGET     := $(ROOTFS_PATH)/usr/bin/pvrsrvinit
