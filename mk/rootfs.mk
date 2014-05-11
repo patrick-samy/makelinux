@@ -1,5 +1,5 @@
 $(ROOTFS_TARGET):
-	cp -Rf $(SOURCES_PATH)/$(ROOTFS_DIR) $(ROOTFS_PATH)
+	cp -af $(SOURCES_PATH)/$(ROOTFS_DIR) $(ROOTFS_PATH)
 
 .PHONY: clean-rootfs
 clean-rootfs:

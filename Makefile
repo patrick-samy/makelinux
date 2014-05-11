@@ -4,11 +4,13 @@ ROOT_DIR   := $(CURDIR)
 # Set the number of threads to the CPU number + 1
 NB_THREADS ?= $(shell echo $(shell grep -c processor /proc/cpuinfo) + 1 | bc)
 
-# Include configuration sub-makefile
-include config.mk
+# Check if a config file was given
+ifeq ($(wildcard configs/$(CONFIG).mk),)
+    $(error Configuration file 'configs/$(CONFIG).mk' could not be found)
+endif
 
-# Include configuration sub-makefile for packages
-include packages/config.mk
+# Include configuration sub-makefile
+include configs/$(CONFIG).mk
 
 # Include common targets
 include mk/common.mk

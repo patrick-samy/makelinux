@@ -21,3 +21,16 @@ BINUTILS_DIR    := binutils
 CC_DIR          := gcc
 LINUX_DIR       := linux/kernel-tilt
 ROOTFS_DIR      := rootfs
+
+# Package list
+PACKAGES        := omap4-pvr-module
+PACKAGES        += omap4-pvr-libraries
+PACKAGES        += libpthread-stubs
+PACKAGES        += libgbm
+PACKAGES        += libdrm
+PACKAGES        += libjpeg
+PACKAGES        += wayland
+PACKAGES        += weston
+PACKAGES        += icu
+PACKAGES        += qt
+PACKAGES        += reflexio
