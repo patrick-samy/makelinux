@@ -3,9 +3,8 @@ TARGET          := i386-hackstation-linux-gnu
 ARCH            := i386
 
 # Linux configuration
-LINUX_DEFCONFIG := localmodconfig
-LINUX_LOADADDR  := 80300000
-LINUX_VERSION   := 4_3.4.0-TI
+LINUX_DEFCONFIG := i386_defconfig
+LINUX_VERSION   := 3.14.3-1-ARCH
 
 # Main directories
 SOURCES_PATH    := $(ROOT_DIR)/sources
@@ -16,7 +15,7 @@ TOOLS_PATH      := $(ROOT_DIR)/tools
 # Sub-directories
 BINUTILS_DIR    := binutils
 CC_DIR          := gcc
-LINUX_DIR       := linux/kernel-tilt
+LINUX_DIR       := linux
 ROOTFS_DIR      := rootfs
 
 # Package list

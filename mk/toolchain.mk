@@ -6,10 +6,10 @@ $(BINUTILS_TARGET): $(ROOTFS_TARGET)
 	cd $(BUILD_PATH)/$(BINUTILS_DIR) && make -j$(NB_THREADS) install
 
 $(CC_TARGET): $(ROOTFS_TARGET) $(BINUTILS_TARGET) $(LINUX_HEADERS_TARGET)
-	mkdir -p $(BUILD_PATH)/$(CC_DIR) > /dev/null
-	cd $(BUILD_PATH)/$(CC_DIR) && PATH=$(TOOLS_PATH)/bin:$(PATH) LD_LIBRARY_PATH=$(ROOTFS_PATH)/lib $(SOURCES_PATH)/$(CC_DIR)/configure --prefix=$(TOOLS_PATH) --target=$(TARGET) --with-sysroot=$(ROOTFS_PATH) --enable-languages=c,c++ --enable-shared --disable-bootstrap --disable-multilib --with-mode=$(ARCH) --with-arch=$(ARCH)$(ARCH_VARIANT) --with-float=$(FLOAT_TYPE) --with-fpu=$(FPU_TYPE) > /dev/null
-	cd $(BUILD_PATH)/$(CC_DIR) && PATH=$(TOOLS_PATH)/bin:$(PATH) LD_LIBRARY_PATH=$(ROOTFS_PATH)/lib make -j$(NB_THREADS) AS_FOR_TARGET="$(TARGET)-as" LD_FOR_TARGET="$(TARGET)-ld" > /dev/null
-	cd $(BUILD_PATH)/$(CC_DIR) && make install > /dev/null
+	mkdir -p $(BUILD_PATH)/$(CC_DIR) > /tmp/makelinux.log
+	cd $(BUILD_PATH)/$(CC_DIR) && PATH=$(TOOLS_PATH)/bin:$(PATH) LD_LIBRARY_PATH=$(ROOTFS_PATH)/lib $(SOURCES_PATH)/$(CC_DIR)/configure --prefix=$(TOOLS_PATH) --target=$(TARGET) --with-sysroot=$(ROOTFS_PATH) --enable-languages=c,c++ --enable-shared --disable-bootstrap --disable-multilib --with-mode=$(ARCH_MODE) --with-arch=$(ARCH)$(ARCH_VARIANT) --with-float=$(FLOAT_TYPE) --with-fpu=$(FPU_TYPE) >> /tmp/makelinux.log
+	cd $(BUILD_PATH)/$(CC_DIR) && PATH=$(TOOLS_PATH)/bin:$(PATH) LD_LIBRARY_PATH=$(ROOTFS_PATH)/lib make -j$(NB_THREADS) AS_FOR_TARGET="$(TARGET)-as" LD_FOR_TARGET="$(TARGET)-ld" >> /tmp/makelinux.log
+	cd $(BUILD_PATH)/$(CC_DIR) && make install >> /tmp/makelinux.log
 
 .PHONY: clean-toolchain
 clean-toolchain:

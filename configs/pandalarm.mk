@@ -1,6 +1,7 @@
 # Toolchain
 TARGET          := arm-hackboard-linux-gnueabihf
 ARCH            := arm
+ARCH_MODE       := arm
 ARCH_VARIANT    := v7-a
 FLOAT_TYPE      := hard
 FPU_TYPE        := vfp
